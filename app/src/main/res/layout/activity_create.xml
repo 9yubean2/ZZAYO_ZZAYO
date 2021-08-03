@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    tools:context=".CreateActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="방 이름"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:fontFamily="@font/jalnan" />
+
+        <EditText
+            android:id="@+id/edt_roomName"
+            android:paddingLeft="10dp"
+            android:background="@drawable/edt_rectangle"
+            android:fontFamily="@font/jalnan"
+            android:textSize="17sp"
+            android:layout_width="260dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="방 비밀번호"
+            android:textSize="17sp"
+            android:fontFamily="@font/jalnan"/>
+        <EditText
+            android:id="@+id/edt_roomPasswd"
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:background="@drawable/edt_rectangle"
+            android:fontFamily="@font/jalnan"
+            android:textSize="17sp"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="인원수"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:fontFamily="@font/jalnan"/>
+        <EditText
+            android:id="@+id/edt_roomNumber"
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:background="@drawable/edt_rectangle"
+            android:fontFamily="@font/jalnan"
+            android:textSize="17sp"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="팀별 인원수"
+            android:textSize="17sp"
+            android:fontFamily="@font/jalnan"/>
+        <EditText
+            android:id="@+id/edt_teamNumber"
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/edt_rectangle"
+            android:inputType="number"
+            android:fontFamily="@font/jalnan"
+            android:textSize="17sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="팀 편성 방법"
+            android:textSize="17sp"
+            android:fontFamily="@font/jalnan"/>
+        <Spinner
+            android:id="@+id/spn_teamOrganizationMethod"
+            android:layout_width="260dp"
+            android:background="@drawable/edt_rectangle"
+            android:layout_height="match_parent"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="진행 기간"
+            android:textSize="17sp"
+            android:layout_marginTop="33dp"
+            android:gravity="center"
+            android:fontFamily="@font/jalnan"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginLeft="45dp"
+                android:layout_width="210dp"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/tv_startDate"
+                    android:layout_width="165dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/jalnan"
+                    android:textSize="17sp"
+                    android:gravity="right|center_vertical" />
+                <Button
+                    android:id="@+id/btn_startDate"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/ic_baseline_calendar_today_24"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="255dp"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text=" ~ "
+                    android:fontFamily="@font/jalnan"
+                    android:textSize="20sp"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/tv_endDate"
+                    android:layout_width="165dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/jalnan"
+                    android:textSize="17sp"
+                    android:gravity="right|center_vertical" />
+
+                <Button
+                    android:id="@+id/btn_endDate"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/ic_baseline_calendar_today_24" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:text="방 소개"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:fontFamily="@font/jalnan"/>
+        <EditText
+            android:id="@+id/edt_roomExplain"
+            android:layout_width="260dp"
+            android:layout_height="100sp"
+            android:paddingLeft="10dp"
+            android:fontFamily="@font/jalnan"
+            android:textSize="17sp"
+            android:background="@drawable/edt_rectangle"/>
+    </LinearLayout>
+
+    <android.widget.Button
+        android:id="@+id/btn_createRoom"
+        android:background="@drawable/pinkbtn"
+        android:layout_width="135dp"
+        android:layout_height="55dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:text="방 만들기"
+        android:fontFamily="@font/jalnan"
+        android:textSize="20sp"/>
+
+
+</LinearLayout>
