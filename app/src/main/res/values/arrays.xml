@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="organizationMethod_array">
-        <item>랜덤</item>
-        <item>혼합</item>
-        <item>사용자 설정</item>
+    <string-array name="category_array">
+        <item>팀플</item>
+        <item>취미</item>
+        <item>스터디</item>
     </string-array>
 </resources>

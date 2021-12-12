@@ -5,53 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/menu"
+    android:background="@drawable/list"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:onClick="hide"
     tools:context=".WriteActivity">
 
     <EditText
         android:id="@+id/edt_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="200dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/edt_rectangle"
-        android:fontFamily="@font/jalnan"
+        android:fontFamily="@font/fonta"
         android:hint="제목"
         android:textSize="25sp"
         android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
         />
 
     <EditText
         android:id="@+id/edt_content"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="320dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-
-        android:inputType="textMultiLine"
         android:background="@drawable/edt_rectangle"
-        android:fontFamily="@font/jalnan"
-        android:hint="내용을 입력하세요."
-        android:textSize="20sp"
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"
+
+        android:fontFamily="@font/fonta"
         android:gravity="top"
-        />
+        android:hint="내용을 입력하세요."
+        android:imeOptions="actionDone"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        android:paddingLeft="10dp"
+
+        android:paddingTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <android.widget.Button
         android:id="@+id/btn_regist"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_gravity="right"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/pinkbtn"
         android:fontFamily="@font/jalnan"
         android:textSize="20sp"
         android:textStyle="normal"
-        android:text="완료"
+        android:text="등록"
         />
 
 </LinearLayout>

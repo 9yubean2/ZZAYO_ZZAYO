@@ -1,5 +1,6 @@
 package com.example.zzayo_zzayo
-
+// CreateActivity에서 넘어오는 페이지
+// 팀에 대한 정보를 확인할 수 있음
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -15,63 +16,59 @@ import android.widget.Toast
 class RoomInfoActivity : AppCompatActivity() {
 
     lateinit var sqlitedb : SQLiteDatabase
+
+    // 팀에 대한 카테고리, 팀을 만든 사용자의 아이디, 팀의 이름
+    // 팀 입장번호, 인원 수, 일정의 시작 날짜와 종료 날짜, 팀에 대한 설명이 존재
     lateinit var roomDBManager : RoomDBManager
 
+    lateinit var tv_category : TextView
     lateinit var tv_roomName : TextView
     lateinit var tv_roomPasswd : TextView
     lateinit var tv_roomNumber : TextView
-    lateinit var tv_teamNumber : TextView
-    lateinit var tv_teamOrganizationMethod : TextView
     lateinit var tv_startDate : TextView
     lateinit var tv_endDate : TextView
     lateinit var tv_roomExplain : TextView
     lateinit var btn_OK : Button
 
+    var str_category: String = ""
     lateinit var str_roomName : String
     var int_roomPasswd : Int = 0
     var int_roomNumber : Int = 0
-    var int_teamNumber : Int = 0
-    var str_teamOrganizationMethod : String = ""
     var str_startDate : String = ""
     var str_endDate : String = ""
     var str_roomExplain : String = ""
 
-    lateinit var str_name: String
+    lateinit var str_id: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room_info)
 
+        tv_category = findViewById(R.id.category)
         tv_roomName = findViewById(R.id.roomName)
         tv_roomPasswd = findViewById(R.id.roomPasswd)
         tv_roomNumber = findViewById(R.id.roomNumber)
-        tv_teamNumber = findViewById(R.id.teamNumber)
-        tv_teamOrganizationMethod = findViewById(R.id.teamOrganizationMethod)
         tv_startDate = findViewById(R.id.startDate)
         tv_endDate = findViewById(R.id.endDate)
         tv_roomExplain = findViewById(R.id.roomExplain)
         btn_OK = findViewById(R.id.btn_OK)
 
 
-        //HomeActivity에서 사용자 이름 받아오기
+        // CreateActivity에서 로그인 한 사용자의 아이디와 팀 이름을 전달
         val intent = intent
-        str_name = intent.getStringExtra("intent_name").toString()
-
-        //CreateActivity에서 방 이름 받아오기
-        val intent_room = intent
+        str_id = intent.getStringExtra("intent_id").toString()
         str_roomName = intent.getStringExtra("intent_roomName").toString()
 
         roomDBManager = RoomDBManager(this, "room", null, 1)
         sqlitedb = roomDBManager.readableDatabase
 
         var cursor : Cursor
-        cursor = sqlitedb.rawQuery("SELECT * FROM room WHERE name='" + str_roomName + "';", null)
+        cursor = sqlitedb.rawQuery("SELECT * FROM room WHERE roomName='" + str_roomName + "';", null)
 
         if (cursor.moveToNext()) {
-            int_roomPasswd = cursor.getInt(cursor.getColumnIndex("passwd"))
+            str_category= cursor.getString(cursor.getColumnIndex("category")).toString()
+            int_roomPasswd = cursor.getInt(cursor.getColumnIndex("roomPasswd"))
             int_roomNumber = cursor.getInt(cursor.getColumnIndex("roomNumber"))
-            int_teamNumber = cursor.getInt(cursor.getColumnIndex("teamNumber"))
-            str_teamOrganizationMethod= cursor.getString(cursor.getColumnIndex("organizationMethod")).toString()
             str_startDate = cursor.getString(cursor.getColumnIndex("startDate")).toString()
             str_endDate = cursor.getString(cursor.getColumnIndex("endDate")).toString()
             str_roomExplain = cursor.getString(cursor.getColumnIndex("roomExplain")).toString()
@@ -81,17 +78,18 @@ class RoomInfoActivity : AppCompatActivity() {
         sqlitedb.close()
         roomDBManager.close()
 
+        tv_category.text = str_category
         tv_roomName.text = str_roomName
         tv_roomPasswd.text = "" + int_roomPasswd
         tv_roomNumber.text = "" + int_roomNumber
-        tv_teamNumber.text = "" + int_teamNumber
-        tv_teamOrganizationMethod.text = str_teamOrganizationMethod
         tv_startDate.text = str_startDate
         tv_endDate.text = str_endDate
         tv_roomExplain.text = str_roomExplain
 
         btn_OK.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, BoardActivity::class.java)
+            intent.putExtra("intent_id", str_id)
+            intent.putExtra("intent_team_title", str_roomName)
             startActivity(intent)
         }
     }
@@ -108,7 +106,7 @@ class RoomInfoActivity : AppCompatActivity() {
         when(item?.itemId) {
             R.id.action_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                intent.putExtra("intent_name", str_name)
+                intent.putExtra("intent_id", str_id)
                 startActivity(intent)
                 return true
             }
@@ -121,7 +119,7 @@ class RoomInfoActivity : AppCompatActivity() {
             }
             R.id.action_mypage -> {
                 val intent = Intent(this, MyPageActivity::class.java)
-                intent.putExtra("intent_name", str_name)
+                intent.putExtra("intent_id", str_id)
                 startActivity(intent)
                 return true
             }

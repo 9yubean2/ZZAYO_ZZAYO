@@ -1,9 +1,12 @@
 package com.example.zzayo_zzayo
-//마이페이지 메뉴 아이템 눌렀을 때 페이지
+// 마이 페이지 옵션을 눌렀을 때
+// 아이디와 내가 참여한 팀의 목록을 볼 수 있고, 그 목록을 누르면 상세 페이지를 볼 수 있음
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -13,15 +16,14 @@ import android.widget.TextView
 import android.widget.Toast
 
 class MyPageActivity : AppCompatActivity() {
-    lateinit var dbManager: DBManager //사용자 정보 DB
-    lateinit var roomdbManager: RoomDBManager //방 정보 DB
-    lateinit var sqlitedb : SQLiteDatabase //사용자 정보 DB를 위한 SQLite
-    lateinit var sqlitedb_room : SQLiteDatabase //방 정보 DB를 위한 SQLite
+    lateinit var dbManager: DBManager
+    lateinit var enterDBManager: EnterDBManager //팀 참여자 정보 DB
+    lateinit var sqlitedb : SQLiteDatabase
+    lateinit var sqlitedb_enter : SQLiteDatabase //팀 참여자 DB를 위한 SQLite
+
     lateinit var layout : LinearLayout
 
     lateinit var tv_id: TextView
-    lateinit var tv_name: TextView
-    lateinit var str_name: String
     lateinit var str_id: String
 
 
@@ -30,40 +32,31 @@ class MyPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_my_page)
 
         tv_id = findViewById(R.id.tv_id)
-        tv_name = findViewById(R.id.tv_name)
         layout = findViewById(R.id.myTeamProject)
 
-        // MainActivity -> HomeActivity에서 로그인 된 이름을 전달받음
+        val face = Typeface.createFromAsset(assets, "fonta.ttf")
+        val shape = GradientDrawable()
+        shape.cornerRadius = 15f
+        shape.setColor(Color.parseColor("#50FFAEBC"))
+
+        //로그인 한 사용자의 아이디를 전달받음
         val intent = intent
-        str_name = intent.getStringExtra("intent_name").toString()
-
-        // 사용자 정보 DB 읽어오기
-        dbManager = DBManager(this, "personnel", null, 1)
-        sqlitedb = dbManager.readableDatabase
-
-        //str_name에 해당하는 id 가져오기
-        var cursor_personnel : Cursor
-        cursor_personnel = sqlitedb.rawQuery("SELECT id FROM personnel WHERE name = '" + str_name + "';", null)
+        str_id = intent.getStringExtra("intent_id").toString()
 
         //출력
-        while (cursor_personnel.moveToNext()) {
-            str_id = cursor_personnel.getString(cursor_personnel.getColumnIndex("id")).toString()
+        tv_id.text = str_id
 
-            tv_id.text = str_id
-            tv_name.text = str_name
-        }
+        enterDBManager = EnterDBManager(this, "enter", null, 1)
+        sqlitedb_enter = enterDBManager.readableDatabase
 
-        cursor_personnel.close()
-        sqlitedb.close()
-        dbManager.close()
-
-        var cursor_room : Cursor
-        cursor_room = sqlitedb.rawQuery("SELECT * FROM room WHERE userName = '" + str_name + "';",null)
+        var cursor_enter : Cursor
+        cursor_enter = sqlitedb_enter.rawQuery("SELECT * FROM enter WHERE userID = '" + str_id + "';",null)
 
         var num : Int = 0
-        while (cursor_room.moveToNext()) {
-            var str_roomName = cursor_room.getString(cursor_room.getColumnIndex("name")).toString()
-            var str_roomExplain = cursor_room.getString(cursor_room.getColumnIndex("roomExplain")).toString()
+        while (cursor_enter.moveToNext()) {
+            var str_roomName = cursor_enter.getString(cursor_enter.getColumnIndex("roomName")).toString()
+            var int_roomPasswd = cursor_enter.getInt(cursor_enter.getColumnIndex("roomPasswd")).toInt()
+            var str_roomExplain = cursor_enter.getString(cursor_enter.getColumnIndex("roomExplain")).toString()
 
             var layout_item : LinearLayout = LinearLayout(this)
             layout_item.orientation = LinearLayout.VERTICAL
@@ -71,18 +64,31 @@ class MyPageActivity : AppCompatActivity() {
             layout_item.setTag(str_roomName)
 
             var tv_roomName : TextView = TextView(this)
-            tv_roomName.text = "방 이름 : " + str_roomName
+            tv_roomName.text =  str_roomName
             tv_roomName.textSize = 30F
-            tv_roomName.setBackgroundColor(Color.GRAY)
+            tv_roomName.setTextColor(Color.BLACK)
+            tv_roomName.setTypeface(face)
+            tv_roomName.setBackgroundColor(Color.parseColor("#50FFAEBC"))
+            tv_roomName.setBackground(shape)
             layout_item.addView(tv_roomName)
 
+            var tv_roomPasswd : TextView = TextView(this)
+            tv_roomPasswd.text = "입장번호: " + int_roomPasswd
+            tv_roomPasswd.setTypeface(face)
+            tv_roomPasswd.textSize=15f
+            layout_item.addView(tv_roomPasswd)
+
             var tv_roomExplain : TextView = TextView(this)
-            tv_roomExplain.text = "방 소개 : " + str_roomExplain
+            tv_roomExplain.text =  str_roomExplain +"\n"
+            tv_roomExplain.setTypeface(face)
+            tv_roomExplain.textSize=15f
+            tv_roomExplain.maxLines=2
             layout_item.addView(tv_roomExplain)
 
             layout_item.setOnClickListener {
                 val intent = Intent(this, RoomInfoActivity::class.java)
                 intent.putExtra("intent_roomName", str_roomName)
+                intent.putExtra("intent_id", str_id)
                 startActivity(intent)
             }
 
@@ -90,9 +96,9 @@ class MyPageActivity : AppCompatActivity() {
             num++
         }
 
-        cursor_room.close()
-        sqlitedb_room.close()
-        roomdbManager.close()
+        cursor_enter.close()
+        sqlitedb_enter.close()
+        enterDBManager.close()
     }
 
 
@@ -112,7 +118,7 @@ class MyPageActivity : AppCompatActivity() {
             }
             R.id.action_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                intent.putExtra("intent_name", str_name)
+                intent.putExtra("intent_id", str_id)
                 startActivity(intent)
                 return true
             }

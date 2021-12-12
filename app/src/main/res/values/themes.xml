@@ -12,6 +12,18 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-
+        <item name="colorAccent">@color/pink_700</item>
+    </style>
+    <style name="AppTheme.OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">#5C5C5C</item>
+    </style>
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- 상단 색 변경 -->
+        <item name="colorAccent">@color/pink_700</item>
+        <!-- 선택한 날짜를 표시할 색상 -->
+        <item name="colorControlActivated">@color/yellow_200</item>
+        <item name="colorControlHighlight">@color/yellow_200</item>
+        <!-- 취소/확인버튼 색상 -->
+        <item name="android:textColor">@color/pink_700</item>
     </style>
 </resources>

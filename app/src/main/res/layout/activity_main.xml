@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/main"
+    android:layout_height="fill_parent"
+    android:background="@drawable/login"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:onClick="hide"
     tools:context=".MainActivity">
 
 
@@ -14,13 +17,16 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="350dp"
         android:layout_marginRight="40dp"
         android:background="@drawable/edt_rectangle"
-        android:fontFamily="@font/jalnan"
+        android:fontFamily="@font/fonta"
         android:hint="ID"
         android:paddingLeft="10dp"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:maxLength="15"
+        android:singleLine="true"
+        android:imeOptions="actionDone"/>
 
 
     <EditText
@@ -31,17 +37,22 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="40dp"
         android:background="@drawable/edt_rectangle"
-        android:fontFamily="@font/jalnan"
+        android:textStyle="bold"
         android:hint="PW"
         android:paddingLeft="10dp"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:inputType="textPassword"
+        android:maxLength="15"
+        android:singleLine="true"
+        android:imeOptions="actionDone"/>
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_gravity="center"
-        android:layout_marginTop="55dp">
+        android:layout_marginTop="50dp">
 
         <android.widget.Button
             android:id="@+id/btn_login"

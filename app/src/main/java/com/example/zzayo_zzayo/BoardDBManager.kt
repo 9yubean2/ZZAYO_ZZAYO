@@ -1,19 +1,19 @@
 package com.example.zzayo_zzayo
 
-// 댓글의 작성자, 댓글을 달려하는 게시글의 제목, 내용이 존재
+// 공지를 등록한 사용자의 아이디, 팀 이름, 공지 내용
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class CommentDBManager (
+class BoardDBManager (
     context: Context?,
     name: String?,
     factory: SQLiteDatabase.CursorFactory?,
     version: Int
 ) : SQLiteOpenHelper(context, name, factory, version) {
-    override fun onCreate(db: SQLiteDatabase?) { // 입력한 내용이 commentTBL에 저장
-        db!!.execSQL("CREATE TABLE commentTBL (comment_writer text, comment_title text ,comment text)")
+    override fun onCreate(db: SQLiteDatabase?) {
+        db!!.execSQL("CREATE TABLE board (board_writer text, team_title text, board_content text)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

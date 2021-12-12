@@ -4,22 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RoomInfoActivity"
+    tools:context=".EnterActivity"
     android:orientation="vertical"
     android:background="@drawable/info"
-    android:paddingTop="5dp">
+    android:onClick="hide"
+    android:paddingTop="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_marginLeft="80dp"
-            android:layout_width="100dp"
+            android:layout_marginLeft="40dp"
+            android:layout_width="110dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
             app:srcCompat = "@drawable/pf"
             />
         <LinearLayout
@@ -32,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="팀 정보를"
+                android:text="입장하려는"
                 android:fontFamily="@font/jalnan"
                 android:textColor="@color/black"
                 android:textSize="25dp"
@@ -41,21 +40,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="확인하세요!"
+                android:text="팀이 맞으신가요?"
                 android:textColor="@color/black"
                 android:fontFamily="@font/jalnan"
                 android:textSize="25dp"
                 />
         </LinearLayout>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="130dp">
+        android:layout_marginTop="100dp">
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -78,8 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginBottom="10dp">
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -100,34 +97,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="40dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp">
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="입장번호"
-            android:fontFamily="@font/jalnan"
-            android:textSize="23sp"
-            android:gravity="center"/>
-        <TextView
-            android:id="@+id/roomPasswd"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/black"
-            android:textSize="23sp"
-            android:gravity="center"
-            android:fontFamily="@font/fonta"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginRight="40dp">
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -139,13 +111,11 @@
             android:id="@+id/roomNumber"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/black"
             android:textSize="23sp"
             android:gravity="center"
-            android:fontFamily="@font/fonta"/>
+            android:fontFamily="@font/fonta"
+            android:textColor="@color/black"/>
     </LinearLayout>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -168,12 +138,11 @@
             <TextView
                 android:id="@+id/startDate"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
                 android:textSize="17sp"
                 android:fontFamily="@font/fonta"
-                android:layout_gravity="center"
                 android:textColor="@color/black"/>
 
             <TextView
@@ -181,14 +150,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="~"
-                android:textSize="23sp"
+                android:textSize="17sp"
                 android:fontFamily="@font/jalnan"/>
             <TextView
                 android:id="@+id/endDate"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:textSize="17sp"
                 android:fontFamily="@font/fonta"
                 android:textColor="@color/black"/>
@@ -198,7 +166,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="40dp">
@@ -215,20 +183,41 @@
             android:layout_height="match_parent"
             android:textColor="@color/black"
             android:gravity="center"
-            android:textSize="17sp"
             android:maxLines="3"
+            android:textSize="17sp"
             android:fontFamily="@font/fonta"/>
     </LinearLayout>
 
-    <android.widget.Button
-        android:id="@+id/btn_OK"
-        android:layout_width="170dp"
-        android:layout_height="55dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:text="팀 공지방 가기"
-        android:fontFamily="@font/jalnan"
-        android:textSize="20sp"
-        android:background="@drawable/yellowbtn"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="100dp">
+
+        <EditText
+            android:id="@+id/roomPasswd"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/edt_rectangle"
+            android:textStyle="bold"
+            android:hint="입장번호"
+            android:textAlignment="center"
+            android:textSize="23sp"
+            android:inputType="numberPassword"
+            android:singleLine="true"
+            android:imeOptions="actionDone"/>
+        <android.widget.Button
+            android:id="@+id/btn_enter"
+            android:layout_marginLeft="15dp"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:text="입장"
+            android:fontFamily="@font/jalnan"
+            android:textSize="20sp"
+            android:background="@drawable/yellowbtn"/>
+    </LinearLayout>
+
+
 
 </LinearLayout>

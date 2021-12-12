@@ -5,11 +5,13 @@
     <item
         android:id="@+id/action_home"
         android:icon="@drawable/ic_baseline_home_24"
+        android:iconTint="#5C5C5C"
         android:title="home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_logout"
         android:icon="@drawable/ic_baseline_login_24"
+        android:iconTint="#5C5C5C"
         android:title="logout"
         app:showAsAction="ifRoom" />
     

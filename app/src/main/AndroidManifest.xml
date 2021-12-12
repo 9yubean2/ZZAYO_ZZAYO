@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     package="com.example.zzayo_zzayo">
 
     <application
@@ -9,15 +10,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ZZAYO_ZZAYO">
-        <activity android:name=".CreateActivity"></activity>
+        <activity android:name=".BoardActivity">
+            android:windowSoftInputMode="adjustPan"
+        </activity>
+        <activity android:name=".ListActivity"
+            />
+        <activity android:name=".EnterActivity"
+            android:configChanges="keyboardHidden"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".CreateActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".RoomInfoActivity" />
-        <activity android:name=".ReadActivity" />
+        <activity android:name=".ReadActivity"
+            android:windowSoftInputMode="adjustPan"/>
+
         <activity android:name=".WriteActivity" />
         <activity android:name=".MyPageActivity" />
         <activity android:name=".TeamActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".JoinActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".JoinActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

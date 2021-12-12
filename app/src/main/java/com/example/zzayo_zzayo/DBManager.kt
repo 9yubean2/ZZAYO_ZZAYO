@@ -1,5 +1,7 @@
 package com.example.zzayo_zzayo
 
+// 회원가입을 한 사용자의 이름, 아이디, 비밀번호가 존재
+
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
